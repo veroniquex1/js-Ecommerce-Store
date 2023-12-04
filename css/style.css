@@ -67,3 +67,18 @@ body{
     display: flex;
     justify-content: center;
  }
+
+ /*ABOUT PAGE STYLING*/
+
+
+ 
+ #span {
+    color: rgba(234, 182, 118, 1);
+    font-size: 40px;
+
+ }
+ 
+ #about-us p{
+    font-size: 20px;
+    padding: 30px;
+ }
