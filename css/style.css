@@ -99,3 +99,8 @@ body{
  ::placeholder{
    color: black !important;
  }
+.item-card{
+   width: 20%;
+   padding-top: 2%;
+   text-align: center;
+}
