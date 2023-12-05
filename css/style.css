@@ -17,6 +17,7 @@ body{
  #logo{
     width: 15%;
     height: 15%;
+    padding: 0;
  }
 
  .navbar {
@@ -24,7 +25,7 @@ body{
  }
 
  .nav-item{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 15px;
     padding: 20px;
  }
@@ -68,9 +69,13 @@ body{
     justify-content: center;
  }
 
+ .footer{
+   display: flex;
+   justify-content: center;
+   padding-top: 5px;
+ }
+
  /*ABOUT PAGE STYLING*/
-
-
  
  #span {
     color: rgba(234, 182, 118, 1);
@@ -81,4 +86,16 @@ body{
  #about-us p{
     font-size: 20px;
     padding: 30px;
+ }
+
+ /*PRODUCTS PAGE STYLING*/
+
+ .btn, #products-search{
+   background-color: rgba(234, 182, 118, 1) !important;
+   margin: 5px;
+
+ }
+
+ ::placeholder{
+   color: black !important;
  }
