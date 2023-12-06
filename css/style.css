@@ -99,8 +99,15 @@ body{
  ::placeholder{
    color: black !important;
  }
-.item-card{
-   width: 20%;
+.card{
+   display: grid;
+   width: 18rem;
    padding-top: 2%;
    text-align: center;
+   object-fit: cover;
+}
+
+#imgProductDisplay{
+   height: 360px !important; 
+   width: 250px; 
 }

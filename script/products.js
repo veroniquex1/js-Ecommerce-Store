@@ -2,16 +2,8 @@
 document.querySelector('#currentYear').innerHTML = new Date().getUTCFullYear()
 
 let searchBar = document.querySelector('products-search') //note: add functionality for search
-let sortBtn = document.querySelector('.btn') //sort function
 
-//Products
-// 'product-list', JSON)
-
-// localStorage.setItem('products-list', JSON.stringify(books)) 
-// let productItems = localStorage.getItem('products')? JSON.parse(localStorage.get('products')) : []
-
-let books = [
-    {
+let books = [{
         id: 1,
         name: 'The Lives Inside Your Head',
         author: 'Winston Brown',
@@ -48,34 +40,73 @@ let books = [
     }
 ]
 
-let products = JSON.parse(localStorage.getItem('productList')) ? JSON.parse(localStorage.getItem('productsList')): localStorage.setItem('productList', JSON.stringify(books));
+let products = JSON.parse(localStorage.getItem('productList')) ? JSON.parse(localStorage.getItem('productsList')) : localStorage.setItem('productList', JSON.stringify(books));
 
 
+let wrapper = document.querySelector('#product-display');
 //Functions
 function productDisplay() {
-    let wrapper = document.querySelector('#product-display');
     wrapper.innerHTML = '';
     if (books) {
         //loop through each element in books array
-        // console.log(products)                                                                                                                                                         
-        books.forEach( (x) => {
-            console.log( x )
+        // console.log(books)                                                                                                                                                         
+        books.forEach((x) => {
+            console.log(x)
             wrapper.innerHTML += `
-            <div class="item-card">
-                      <img src="${x.image}" class="card-img-top " alt="">
-                      <div class="card-body">
-                          <h6 class="card-title">${x.name}</h6>
-                          <h6 class="card-text">${x.author}</h6>
-                          <p class="card-text">${x.cost}</p>
-                          <a class="btn btn-primary" href="" role="button">Add to cart</a>
-                      </div>
-                  </div>`;
-      });
+            <div class="card ">
+                        <img src="${x.image}" class="card-img-top" id="imgProductDisplay" alt="Your Image""></img>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">${x.name}</h5>
+                            <p class="card-text text-center">${x.author}</p>
+                            <p class="card-text text-center">R${x.cost}</p>
+                            <a href="#" class="btn btn-dark ">Add to Cart</a>
+                        </div>
+                    </div>`;
+        });
     } else {
-      wrapper.innerHTML = 'No products available';
+        wrapper.innerHTML = 'No products available';
     }
-  }
+}
 
- productDisplay()
+productDisplay()
 
+let productSearch = document.querySelector('#products-search')
+productSearch.addEventListener('keyup', function () {
+    try {
+        let searchResult = books.filter(x => {
+                return x.name.toLowerCase().includes(productSearch.value.toLowerCase())
+                // console.log(searchResult) 
+        })
+        if(searchResult.length > 0){
+            wrapper.innerHTML = ""
+            searchResult.forEach((item, i) => {
+                wrapper.innerHTML +=`
+                <div class="card ">
+                <img src="${item.image}" class="card-img-top" id="imgProductDisplay"></img>
+                <div class="card-body">
+                    <h5 class="card-title teitemt-center">${item.name}</h5>
+                    <p class="card-teitemt teitemt-center">${item.author}</p>
+                    <p class="card-text text-center">R${item.cost}</p>
+                    <a href="#" class="btn btn-dark ">Add to Cart</a>
+                </div>
+            </div>
+                `
+            })
+        }
+        else{
+            wrapper.innerHTML = "Item not found"
+        }
 
+    } catch(e) {
+        alert(e)
+    }
+})
+
+let sortBtn = document.querySelector('#sort')
+sortBtn.addEventListener('click', sorting)
+
+function sorting(){
+    sortedBooks = books.sort((item1, item2) => item1.cost - item2.cost)
+    productDisplay()
+
+}
