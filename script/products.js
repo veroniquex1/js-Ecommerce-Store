@@ -1,7 +1,7 @@
 //Footer: Current Year 
 document.querySelector('#currentYear').innerHTML = new Date().getUTCFullYear()
 
-let searchBar = document.querySelector('products-search') //note: add functionality for search
+let searchBar = document.querySelector('#products-search') //note: add functionality for search
 
 let books = [{
         id: 1,
@@ -40,16 +40,17 @@ let books = [{
     }
 ]
 
-let products = JSON.parse(localStorage.getItem('productList')) ? JSON.parse(localStorage.getItem('productsList')) : localStorage.setItem('productList', JSON.stringify(books));
+let products = JSON.parse(localStorage.getItem('productList')) ? JSON.parse(localStorage.getItem('productList')) : (localStorage.setItem('productList', JSON.stringify(books)), books);
+;
 
 
 let wrapper = document.querySelector('#product-display');
 //Functions
 function productDisplay() {
     wrapper.innerHTML = '';
-    if (books) {
-        (books)                                                                                                                      
-        books.forEach((x, i) => {
+    if (products) {
+        (products)                                                                                                                      
+        products.forEach((x, i) => {
             wrapper.innerHTML += `
             <div class="card ">
                         <img src="${x.image}" class="card-img-top" id="imgProductDisplay" alt="Your Image""></img>
@@ -57,7 +58,7 @@ function productDisplay() {
                             <h5 class="card-title text-center">${x.name}</h5>
                             <p class="card-text text-center">${x.author}</p>
                             <p class="card-text text-center">R${x.cost}</p>
-                            <a href="#" class="btn btn-dark data-cartBtn value="${i}" type="button">Add to Cart</a>
+                            <a href="#" class="btn btn-dark" onclick='pushItem(${i})' cartBtn="${i}" type="button">Add to Cart</a>
                             </div>
                     </div>`;
         });
@@ -68,10 +69,17 @@ function productDisplay() {
 
 productDisplay()
 
+//function to push item to array that will then be stored in local storage:), index from button will be passed into function(as a parameter) 
+function pushItem(index) {
+//pushing specific item into new checkout array(if index=0, then push books[0] into checkout)
+    shoppingCart.push(books[index])
+//set array into local storage 
+    localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
+}
 let productSearch = document.querySelector('#products-search')
 productSearch.addEventListener('keyup', function () {
     try {
-        let searchResult = books.filter(x => {
+        let searchResult = products.filter(x => {
                 return x.name.toLowerCase().includes(productSearch.value.toLowerCase())
                 // console.log(searchResult) 
         })
@@ -82,10 +90,10 @@ productSearch.addEventListener('keyup', function () {
                 <div class="card ">
                 <img src="${item.image}" class="card-img-top" id="imgProductDisplay"></img>
                 <div class="card-body">
-                    <h5 class="card-title teitemt-center">${item.name}</h5>
-                    <p class="card-teitemt teitemt-center">${item.author}</p>
+                    <h5 class="card-title text-center">${item.name}</h5>
+                    <p class="card-title text-center">${item.author}</p>
                     <p class="card-text text-center">R${item.cost}</p>
-                    <a href="#" class="btn btn-dark data-cartBtn value="${i}" type="button">Add to Cart</a>
+                    <a href="#" class="btn btn-dark cartBtn="${i}" type="button">Add to Cart</a>
                 </div>
             </div>
                 `
@@ -100,25 +108,5 @@ productSearch.addEventListener('keyup', function () {
     }
 })
 
-let sortBtn = document.querySelector('#sort')
-sortBtn.addEventListener('click', sorting)
-
-function sorting(){
-    sortedBooks = books.sort((item1, item2) => item1.cost - item2.cost)
-    productDisplay()
-
-}
-
-let shoppingCart = []
-
-function addToCart(i){
-    shoppingCart.push(books[i])
-    localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
-}
-
-function toCart(event) {
-    if(event.target.innerHTML == "Add to Cart"){
-        addToCart(event.target.value)
-    }
-}
- wrapper.addEventListener('click', toCart)
+let cartBtn = document.querySelectorAll('[cartBtn]')
+let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
