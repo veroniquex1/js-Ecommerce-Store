@@ -48,10 +48,8 @@ let wrapper = document.querySelector('#product-display');
 function productDisplay() {
     wrapper.innerHTML = '';
     if (books) {
-        //loop through each element in books array
-        // console.log(books)                                                                                                                                                         
-        books.forEach((x) => {
-            console.log(x)
+        (books)                                                                                                                      
+        books.forEach((x, i) => {
             wrapper.innerHTML += `
             <div class="card ">
                         <img src="${x.image}" class="card-img-top" id="imgProductDisplay" alt="Your Image""></img>
@@ -59,8 +57,8 @@ function productDisplay() {
                             <h5 class="card-title text-center">${x.name}</h5>
                             <p class="card-text text-center">${x.author}</p>
                             <p class="card-text text-center">R${x.cost}</p>
-                            <a href="#" class="btn btn-dark ">Add to Cart</a>
-                        </div>
+                            <a href="#" class="btn btn-dark data-cartBtn value="${i}" type="button">Add to Cart</a>
+                            </div>
                     </div>`;
         });
     } else {
@@ -87,7 +85,7 @@ productSearch.addEventListener('keyup', function () {
                     <h5 class="card-title teitemt-center">${item.name}</h5>
                     <p class="card-teitemt teitemt-center">${item.author}</p>
                     <p class="card-text text-center">R${item.cost}</p>
-                    <a href="#" class="btn btn-dark ">Add to Cart</a>
+                    <a href="#" class="btn btn-dark data-cartBtn value="${i}" type="button">Add to Cart</a>
                 </div>
             </div>
                 `
@@ -110,3 +108,17 @@ function sorting(){
     productDisplay()
 
 }
+
+let shoppingCart = []
+
+function addToCart (i){
+    shoppingCart.push(products[i])
+    localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
+
+}
+
+wrapper.addEventListener('click', function(){
+    if(event.target.hasAttribute('data-cartBtn')){
+        addToCart(event.target.value)
+    }
+})
