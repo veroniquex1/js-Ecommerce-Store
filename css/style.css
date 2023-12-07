@@ -21,10 +21,11 @@ body{
  }
 
  .navbar {
-    background-color: rgba(234, 182, 118, 1) !important;
+    background-color: black !important;
  }
 
  .nav-item{
+    color: white !important;
     font-size: 25px;
     font-weight: 15px;
     padding: 20px;
