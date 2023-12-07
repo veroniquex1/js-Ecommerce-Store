@@ -111,14 +111,14 @@ function sorting(){
 
 let shoppingCart = []
 
-function addToCart (i){
-    shoppingCart.push(products[i])
+function addToCart(i){
+    shoppingCart.push(books[i])
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
-
 }
 
-wrapper.addEventListener('click', function(){
-    if(event.target.hasAttribute('data-cartBtn')){
+function toCart(event) {
+    if(event.target.innerHTML == "Add to Cart"){
         addToCart(event.target.value)
     }
-})
+}
+ wrapper.addEventListener('click', toCart)

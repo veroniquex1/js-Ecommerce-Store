@@ -21,18 +21,21 @@ body{
  }
 
  .navbar {
-    background-color: black !important;
+    /* background-color: black !important; */
+    /* color: white !important; */
  }
 
  .nav-item{
-    color: white !important;
+    
     font-size: 25px;
     font-weight: 15px;
     padding: 20px;
  }
 
  footer{
-    background-color: rgba(234, 182, 118, 1);
+    /* background-color: rgba(234, 182, 118, 1); */
+    background-color: black;
+    color: white;
     font-weight: 15px;
     
  }
