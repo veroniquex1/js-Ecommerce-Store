@@ -58,7 +58,7 @@ function productDisplay() {
                             <h5 class="card-title text-center">${x.name}</h5>
                             <p class="card-text text-center">${x.author}</p>
                             <p class="card-text text-center">R${x.cost}</p>
-                            <a href="#" class="btn btn-dark" onclick='pushItem(${i})' cartBtn="${i}" type="button">Add to Cart</a>
+                            <button href="#" class="btn btn-dark" onclick='addToCart(${JSON.stringify(x) })' cartBtn="${i}" type="button">Add to Cart</button>
                             </div>
                     </div>`;
         });
@@ -93,7 +93,7 @@ productSearch.addEventListener('keyup', function () {
                     <h5 class="card-title text-center">${item.name}</h5>
                     <p class="card-title text-center">${item.author}</p>
                     <p class="card-text text-center">R${item.cost}</p>
-                    <a href="#" class="btn btn-dark cartBtn="${i}" type="button">Add to Cart</a>
+                    <button href="#" class="btn btn-dark" onclick='addToCart(${JSON.stringify(item)})' cartBtn="${i}" type="button">Add to Cart</button>
                 </div>
             </div>
                 `
@@ -108,5 +108,12 @@ productSearch.addEventListener('keyup', function () {
     }
 })
 
-let cartBtn = document.querySelectorAll('[cartBtn]')
-let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
+// let cartBtn = document.querySelectorAll('[cartBtn]')
+let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+function addToCart(item) {
+    if(item) {
+        shoppingCart.push(item)
+        localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
+    }
+}
