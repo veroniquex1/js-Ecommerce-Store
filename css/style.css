@@ -13,9 +13,15 @@ body{
     display: grid;
     grid-template-rows: auto minmax(100%, 100vh) auto;
     background-image: url(https://i.postimg.cc/9FVBd1ZG/photography-booklist-v1-1.jpg);
+    background-attachment: fixed;
+    
     /* background-repeat: no-repeat; */
    
 }
+
+/* .home-body{
+   object-fit: cover;
+} */
 
 
 
@@ -27,11 +33,12 @@ body{
 
  .navbar {
     background-color: #03045E !important;
-    color: white !important;
  }
 
+ .nav-link{
+    color: white !important;
+ }
  .nav-item{
-    
     font-size: 20px;
     font-weight: 15px;
     /* padding: 20px; */
@@ -39,13 +46,13 @@ body{
 
  footer{
     background-color: #03045E;
-    color: white;
+    color: white; 
     font-weight: 15px;
     
  }
 
  .h1{
-    font-size: 80px;
+    font-size: 70px;
     color: #03045E;
     display: flex;
     justify-content: center;
@@ -69,7 +76,7 @@ body{
  }
 
  .h2{
-    font-size: 50px;
+    font-size: 40px;
     color: #03045E;
     padding-top: 100px;
     padding-bottom: 50px;
@@ -93,7 +100,7 @@ body{
  
  #about-us p{
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     padding: 30px;
  }
 
@@ -102,11 +109,12 @@ body{
  .btn, #products-search{
    background-color: #03045E !important;
    margin: 5px;
+   color: white;
 
  }
 
  ::placeholder{
-   color: black !important;
+   color: white !important;
  }
 .card{
    display: grid;

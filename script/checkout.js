@@ -7,10 +7,11 @@ let checkoutWrapper = document.querySelector('[data-table-body]')
 
 function displayCheckoutData() {
     checkoutWrapper.innerHTML = ""
-    let uniqueData = Object.groupBy(checkoutData, item=> item.id)
+    let uniqueData = Object.groupBy(checkoutData, item=> { return item.id})
     for(let key in uniqueData) {
         checkoutWrapper.innerHTML +=`
             <tr>
+                <th scope="row"></th>
                 <td>${uniqueData[key][0].name}</td>
                 <td>${uniqueData[key][0].author}</td>
                 <td>${uniqueData[key].length}</td>
