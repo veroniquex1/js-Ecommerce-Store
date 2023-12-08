@@ -41,7 +41,6 @@ let books = [{
 ]
 
 let products = JSON.parse(localStorage.getItem('productList')) ? JSON.parse(localStorage.getItem('productList')) : (localStorage.setItem('productList', JSON.stringify(books)), books);
-;
 
 
 let wrapper = document.querySelector('#product-display');
