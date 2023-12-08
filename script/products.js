@@ -68,6 +68,15 @@ function productDisplay() {
 
 productDisplay()
 
+let sortBtn = document.querySelector('#sort')
+sortBtn.addEventListener('click', sorting)
+
+function sorting(){
+    sortedBooks = books.sort((item1, item2) => item1.cost - item2.cost)
+    // alert('Button clicked')
+    productDisplay()
+}
+
 //function to push item to array that will then be stored in local storage:), index from button will be passed into function(as a parameter) 
 function pushItem(index) {
 //pushing specific item into new checkout array(if index=0, then push books[0] into checkout)
@@ -75,12 +84,13 @@ function pushItem(index) {
 //set array into local storage 
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
 }
+
+//Product search function
 let productSearch = document.querySelector('#products-search')
 productSearch.addEventListener('keyup', function () {
     try {
         let searchResult = products.filter(x => {
                 return x.name.toLowerCase().includes(productSearch.value.toLowerCase())
-                // console.log(searchResult) 
         })
         if(searchResult.length > 0){
             wrapper.innerHTML = ""
@@ -107,7 +117,8 @@ productSearch.addEventListener('keyup', function () {
     }
 })
 
-// let cartBtn = document.querySelectorAll('[cartBtn]')
+//Add to Cart Function
+
 let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
 
 function addToCart(item) {

@@ -7,7 +7,7 @@ let checkoutWrapper = document.querySelector('[data-table-body]')
 
 function displayCheckoutData() {
     checkoutWrapper.innerHTML = ""
-    let uniqueData = Object.groupBy(checkoutData, item=> { return item.id})
+    let uniqueData = Object.groupBy(checkoutData, item=> item.id)
     for(let key in uniqueData) {
         checkoutWrapper.innerHTML +=`
             <tr>
@@ -22,11 +22,44 @@ function displayCheckoutData() {
 }
 displayCheckoutData()
 
+
+let clearBtn = document.querySelector('#clearCheckout')
+clearBtn.addEventListener('click', () =>{
+    localStorage.removeItem('shoppingCart');
+    checkoutWrapper.innerHTML = `
+    <p>Place New Order</p>`
+    
+})
+
 let placeOrder = document.querySelector('#placeOrder')
 placeOrder.addEventListener('click', orderPlaced)
 
 
-function placeOrder(){
+function orderPlaced(){
+    checkoutWrapper.innerHTML =
+    `<div class="alert alert-success d-flex align-items-center" role="alert">
+     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+     <div> Order Placed. Check email for confirmation. </div>
+     </div>`
 
 }
 
+//Order Total
+
+let orderTotal = document.querySelector('#orderTotal')
+orderTotal.addEventListener('click', totaledOrder)
+
+let totalCost = 0;
+    for(let i in total){
+        let items = itemTotal[i];
+        let totalAmount = items.length * items[0].amount;
+        totalCost += totalAmount
+
+    }
+    orderTotal.innerHTML += `R${totalCost}`
+
+
+
+// function totaledOrder(){
+
+// }
