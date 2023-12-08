@@ -1,5 +1,7 @@
 //Footer: Current Year 
 document.querySelector('#currentYear').innerHTML = new Date().getUTCFullYear()
+
+
 let checkoutData = JSON.parse(localStorage.getItem('shoppingCart')) || []
 let checkoutWrapper = document.querySelector('[data-table-body]')
 
