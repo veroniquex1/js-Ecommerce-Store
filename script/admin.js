@@ -4,7 +4,7 @@ document.querySelector('#currentYear').innerHTML = new Date().getUTCFullYear()
 let productsAdmin = JSON.parse(localStorage.getItem('productList'))
 
 let adminWrapper = document.querySelector('.table-group-divider');
-//Functions
+//Display function
 function productDisplay() {
     adminWrapper.innerHTML = '';
     if (productsAdmin) {
@@ -17,7 +17,6 @@ function productDisplay() {
                 <td>${item.cost}</td>
                 <td>
                 <button class="btn " value="${i}">Edit</button>
-                <button class="btn " value="${i}">Add New Item</button>
                 <button class="btn delete" value="${i}">Delete</button>
                 </td>
             </tr>
@@ -30,13 +29,13 @@ function productDisplay() {
 
 productDisplay()
 
-// uptdating localstorage
+// updating localstorage
 function update() {
     localStorage.setItem('productList', JSON.stringify(productsAdmin))
     productsAdmin = JSON.parse(localStorage.getItem('productList'))
 }
 
-//Delete Function
+//Delete Button Function
 
 function clear(x){
     productsAdmin.splice(x, 1)
