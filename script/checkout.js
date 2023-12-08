@@ -11,7 +11,6 @@ function displayCheckoutData() {
     for(let key in uniqueData) {
         checkoutWrapper.innerHTML +=`
             <tr>
-                <th scope="row"></th>
                 <td>${uniqueData[key][0].name}</td>
                 <td>${uniqueData[key][0].author}</td>
                 <td>${uniqueData[key].length}</td>
@@ -22,3 +21,12 @@ function displayCheckoutData() {
     }
 }
 displayCheckoutData()
+
+let placeOrder = document.querySelector('#placeOrder')
+placeOrder.addEventListener('click', orderPlaced)
+
+
+function placeOrder(){
+
+}
+
