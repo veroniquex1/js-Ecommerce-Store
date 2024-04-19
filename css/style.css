@@ -9,41 +9,7 @@
 
 /*Home Page Styling*/
 
-body{
-    display: grid;
-    grid-template-rows: auto minmax(100%, 100vh) auto;
-    background-image: url(https://i.postimg.cc/yYntk3jz/books-montage-stretched-darker.jpg);
-    background-attachment: fixed;
-    /* background-color: aqua; */
-    
-    /* background-repeat: no-repeat; */
-   
-}
 
-/* .home-body{
-   object-fit: cover;
-} */
-
-
-
- #logo{
-    width: 15%;
-    height: 15%;
-    padding: 0;
- }
-
- .navbar {
-    background-color: #03045E !important;
- }
-
- .nav-link{
-    color: white !important;
- }
- .nav-item{
-    font-size: 20px;
-    font-weight: 15px;
-    /* padding: 20px; */
- }
 
  footer{
     background-color: #03045E;
